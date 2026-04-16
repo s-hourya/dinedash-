@@ -8,7 +8,7 @@ const Card = () => {
   return (
     <div className="card">
       <div className="cardImg">
-        <img src={Dine} alt="dineImg" />
+        <img src={Online} alt="onlineImg" />
         <h1>Order Online</h1>
         <span>Stay home and order to your doorstep</span>
       </div>
@@ -18,9 +18,9 @@ const Card = () => {
         <span>Explore the city's top nightlife outlets</span>
       </div>
       <div className="cardImg">
-        <img src={Online} alt="onlineImg" />
-        <h1>Dinning</h1>
-        <span>Views the city's favourite venues</span>
+        <img src={Dine} alt="dineImg" />
+        <h1>Dining</h1>
+        <span>View the city's favourite dining venues</span>
       </div>
     </div>
   );

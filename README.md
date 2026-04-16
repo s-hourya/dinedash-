@@ -1,68 +1,177 @@
-# 🚀 **DevOps Project: ZOMATO Clone App Deployment**
+# 🍽️ DineDash — DevSecOps CI/CD Pipeline
 
-In this **DevOps project**, I demonstrate how to **deploy a ZOMATO Clone App** using a variety of modern DevOps tools and services.
-
-## 🛠️ Tools & Services Used:
-
-1. **GitHub** ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
-2. **Jenkins** ![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
-3. **SonarQube** ![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=flat-square&logo=sonarqube&logoColor=white)
-4. **Docker** ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-5. **Kubernetes** ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-6. **Prometheus** ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
-7. **Grafana** ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
-8. **ArgoCD** ![ArgoCD](https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white)
-9. **OWASP** ![OWASP](https://img.shields.io/badge/OWASP-000000?style=flat-square&logo=owasp&logoColor=white)
-10. **Trivy** ![Trivy](https://img.shields.io/badge/Trivy-00979D?style=flat-square&logo=trivy&logoColor=white)
+A food delivery & restaurant discovery web application built with **ReactJS**, containerized with **Docker**, and deployed through a fully automated **DevSecOps CI/CD pipeline** using Jenkins, SonarQube, OWASP, and Trivy.
 
 ---
 
-### Project Stages:
+## 🏗️ Architecture Overview
 
-1. **Stage 1** - Deployment of App to Docker Container
-2. **Stage 2** - Deployment of App to K8S Cluster with Monitoring
-
----
-
-### 📂 GitHub Repo Link:  
-[**ZOMATO Clone DevOps Project**](#)
-
-### 📹 DevOps Project Video Link:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/GyoI6-I68aQ)
-
-### 📺 Docker Playlist Video Link:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh)
+```
+Developer Push → GitHub → Jenkins Pipeline
+    → SonarQube Analysis → Quality Gate
+    → OWASP Dependency Check
+    → Docker Build → Trivy Image Scan
+    → Push to DockerHub → Deploy to AWS EC2
+    → Access via http://<EC2-IP>
+```
 
 ---
 
-## 📂 Other DevOps Projects
+## 🛠️ Tech Stack
 
-### 🟠 **SWIGGY App Project**:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/x55z7rk0NAU)
-
-### 🔵 **SonarQube Video Link**:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=sonarqube&logoColor=white)](https://youtu.be/ScdedztTaAU)
-
-### 🟡 **Nexus Video Link**:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=nexus&logoColor=white)](https://youtu.be/opJAfDOCZuI)
-
----
-
-## Connect with me on LinkedIn:  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kastro-kiran/)
-
-## Join the WhatsApp Group for DevOps technical discussions!
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/EGw6ZlwUHZc82cA0vXFnwm) 
+| Layer | Tool |
+|-------|------|
+| Frontend | ReactJS 18, SCSS, Material UI |
+| Containerization | Docker (multi-stage, Node 20 + Nginx) |
+| CI/CD | Jenkins |
+| Code Quality | SonarQube |
+| Dependency Security | OWASP Dependency-Check |
+| Image Security | Trivy |
+| Container Registry | DockerHub |
+| Cloud | AWS EC2 |
 
 ---
 
-### Feedback Request:  
+## 📂 Project Structure
 
-After deploying the app, please share your opinion on LinkedIn along with the Project link and tag me on LinkedIn. Help the video reach wider DevOps enthusiasts.
+```
+dinedash-/
+├── public/                   # Static HTML + favicon
+├── src/
+│   ├── components/
+│   │   ├── Header/           # Navigation + search bar + mobile menu
+│   │   ├── Card/             # 3-card section (Order Online, Nightlife, Dining)
+│   │   ├── Collections/      # Curated restaurant collections
+│   │   ├── Cities/           # Popular localities section
+│   │   ├── CTA/              # App download call-to-action
+│   │   ├── AccContainer/     # Accordion section wrapper
+│   │   ├── Accordian/        # Expandable FAQ accordion
+│   │   └── Footer/           # Full-width site footer
+│   ├── assets/images/        # All image assets
+│   ├── App.js                # Root component
+│   ├── app.scss              # Global SCSS styles
+│   ├── data.js               # Accordion data (cuisines, types, chains)
+│   └── index.js              # React entry point
+├── Dockerfile                # Multi-stage build: Node 20 → Nginx
+├── nginx.conf                # Nginx config (SPA routing + security headers)
+├── Jenkinsfile               # Full DevSecOps CI/CD pipeline (12 stages)
+├── sonar-project.properties  # SonarQube configuration
+├── .env.example              # Environment variable template
+├── Kubernetes/               # K8s manifests (deployment + services)
+└── package.json              # Node.js dependencies
+```
 
 ---
 
-## Happy learning!  
-<img src="https://media.licdn.com/dms/image/v2/D5603AQHJB_lF1d9OSw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718971147172?e=1735776000&v=beta&t=HC_e0eOufPvf8XQ0P7iI9GDm9hBSIh5FwQaGsL_8ivo" alt="Kastro Profile Image" width="100" height="100" style="border-radius:50%;">
+## 🚀 Quick Start (Local Development)
 
-KASTRO KIRAN V
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/dinedash-.git
+cd dinedash-
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm start
+# App runs at http://localhost:3000
+```
+
+---
+
+## 🐳 Docker (Local)
+
+```bash
+# Build the image
+docker build -t dinedash:latest .
+
+# Run the container
+docker run -d -p 80:80 --name dinedash dinedash:latest
+
+# Access at http://localhost
+```
+
+---
+
+## 🔧 Jenkins Pipeline — Setup Guide
+
+### Prerequisites on Jenkins Server
+
+1. **Install plugins:** Git, NodeJS, SonarQube Scanner, OWASP Dependency-Check, Docker Pipeline, SSH Agent, Email Extension
+2. **Configure tools in Manage Jenkins → Tools:**
+   - JDK: `jdk17`
+   - NodeJS: `node23`
+   - SonarQube Scanner: `sonar-scanner`
+   - OWASP DC: `DP-Check`
+3. **Add credentials:**
+   - `Sonar-token` — SonarQube token (Secret text)
+   - `docker` — DockerHub username/password
+   - `ec2-ssh-key` — EC2 SSH private key (.pem)
+
+### Environment Variables to Update in `Jenkinsfile`
+
+| Variable | What to Set |
+|----------|-------------|
+| `DOCKERHUB_USERNAME` | Your DockerHub username |
+| `EC2_HOST` | Your EC2 instance public IP |
+| `EMAIL_RECIPIENT` | Your notification email address |
+| Git URL in `Git Checkout` stage | Your actual GitHub repo URL |
+
+---
+
+## 🔐 DevSecOps Pipeline Stages
+
+| Stage | Tool | Purpose |
+|-------|------|---------|
+| 1. Clean Workspace | Jenkins | Remove stale files |
+| 2. Git Checkout | Git | Pull latest code |
+| 3. SonarQube Analysis | SonarQube | Static code analysis |
+| 4. Quality Gate | SonarQube | Block bad code |
+| 5. Install Dependencies | npm | Install packages |
+| 6. OWASP Dependency Check | OWASP DC | CVE scan of dependencies |
+| 7. Trivy FS Scan | Trivy | Filesystem vulnerability scan |
+| 8. Docker Build | Docker | Build production image |
+| 9. Trivy Image Scan | Trivy | Image vulnerability scan |
+| 10. Push to DockerHub | Docker | Store image |
+| 11. Deploy to EC2 | SSH + Docker | Run on cloud |
+| 12. (Optional) Terminate EC2 | AWS CLI | Cost optimization |
+
+---
+
+## ☸️ Kubernetes Deployment
+
+```bash
+# Deploy to a Kubernetes cluster
+kubectl apply -f Kubernetes/deployment.yaml
+kubectl apply -f Kubernetes/service.yaml
+
+# Check status
+kubectl get pods
+kubectl get svc
+# App accessible on NodePort 30001
+```
+
+---
+
+## 📋 Required Jenkins Plugins
+
+- Git Plugin
+- NodeJS Plugin
+- SonarQube Scanner Plugin
+- OWASP Dependency-Check Plugin
+- Docker Pipeline Plugin
+- SSH Agent Plugin
+- Email Extension Plugin
+
+---
+
+## ⚠️ Important Notes
+
+- The old `jenkinsfile` (lowercase) is now replaced by `Jenkinsfile` (capital J) — Jenkins requires this exact casing.
+- The Docker image now uses **Nginx** (port 80) instead of the dev server (port 3000).
+- `project_context.md` is in `.gitignore` and will not be committed.
+
+---
+
+*Built for DevSecOps learning & demonstration purposes.*

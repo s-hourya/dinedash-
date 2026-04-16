@@ -13,7 +13,13 @@ const Accordian = ({ question }) => {
           <h3>{question.title}</h3>
           {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </div>
-        {open && <p>{question.infos}</p>}
+        {open && (
+          <p>
+            {question.infos.map((info, index) => (
+              <span key={index}>{info}</span>
+            ))}
+          </p>
+        )}
       </div>
     </div>
   );

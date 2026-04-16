@@ -1,23 +1,33 @@
-# Use Node.js 16 slim as the base image
-FROM node:16-slim
+# ─── Stage 1: Build ───────────────────────────────────────────────────────────
+# Use Node 20 LTS (current LTS as of 2024) as builder
+FROM node:20-alpine AS builder
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Install dependencies first (leverages Docker layer cache)
 COPY package*.json ./
+RUN npm ci --omit=dev
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
+# Copy source and build the React app
 COPY . .
-
-# Build the React app
 RUN npm run build
 
-# Expose port 3000 (or the port your app is configured to listen on)
-EXPOSE 3000
+# ─── Stage 2: Serve ───────────────────────────────────────────────────────────
+# Use lightweight, production Nginx image to serve static files
+FROM nginx:1.25-alpine
 
-# Start your Node.js server (assuming it serves the React app)  
-CMD ["npm", "start"]
+# Remove default Nginx welcome page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy built React app from builder stage
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Copy custom Nginx config that handles React Router (client-side routing)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose HTTP port
+EXPOSE 80
+
+# Start Nginx in the foreground (required for Docker)
+CMD ["nginx", "-g", "daemon off;"]
