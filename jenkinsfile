@@ -8,13 +8,13 @@ pipeline {
 
     environment {
         SCANNER_HOME        = tool 'sonar-scanner'
-        DOCKERHUB_USERNAME  = 'your-dockerhub-username'   // ← CHANGE THIS
+        DOCKERHUB_USERNAME  = 'ekansh69'
         IMAGE_NAME          = "${DOCKERHUB_USERNAME}/dinedash"
         IMAGE_TAG           = "latest"
-        EC2_HOST            = 'your-ec2-public-ip'        // ← CHANGE THIS
-        EC2_USER            = 'ubuntu'
-        EC2_CREDENTIALS     = 'ec2-ssh-key'               // Jenkins credential ID for SSH key
-        EMAIL_RECIPIENT     = 'your-email@example.com'    // ← CHANGE THIS
+        EC2_HOST            = '43.205.103.242'
+        EC2_USER            = 'ec2-user'
+        EC2_CREDENTIALS     = 'ec2-ssh-key'
+        EMAIL_RECIPIENT     = 'ekanshlamba6226@gmail.com'
     }
 
     stages {
