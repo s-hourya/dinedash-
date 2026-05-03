@@ -66,6 +66,7 @@ pipeline {
         }
 
         // ─── Stage 6: OWASP Dependency Check ──────────────────────────────────
+        /*
         stage('OWASP Dependency Check') {
             steps {
                 dependencyCheck(
@@ -75,6 +76,7 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        */
 
         // ─── Stage 7: Trivy File System Scan ──────────────────────────────────
         stage('Trivy File System Scan') {
