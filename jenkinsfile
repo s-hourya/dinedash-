@@ -121,17 +121,14 @@ pipeline {
         // ─── Stage 11: Deploy to AWS EC2 ──────────────────────────────────────
         stage('Deploy to EC2') {
             steps {
-                sshagent(credentials: [EC2_CREDENTIALS]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY')]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} '
-                            docker stop dinedash 2>/dev/null || true
-                            docker rm   dinedash 2>/dev/null || true
-                            docker pull ${IMAGE_NAME}:${IMAGE_TAG}
-                            docker run -d \
-                                --name dinedash \
-                                --restart unless-stopped \
-                                -p 80:80 \
-                                ${IMAGE_NAME}:${IMAGE_TAG}
+                        chmod 400 \$SSH_KEY
+                        ssh -o StrictHostKeyChecking=no -i \$SSH_KEY ${EC2_USER}@${EC2_HOST} '
+                            docker pull ekansh69/dinedash:latest &&
+                            docker stop dinedash || true &&
+                            docker rm dinedash || true &&
+                            docker run -d --name dinedash --restart unless-stopped -p 80:80 ekansh69/dinedash:latest
                         '
                     """
                 }
