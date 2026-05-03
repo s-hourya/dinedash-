@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Install dependencies first (leverages Docker layer cache)
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install
 
 # Copy source and build the React app
 COPY . .
