@@ -84,7 +84,14 @@ pipeline {
             }
         }
 
-        // ─── Stage 8: Docker Build ─────────────────────────────────────────────
+        // ─── Stage 8: Docker Cleanup ───────────────────────────────────────────
+        stage('Docker Cleanup') {
+            steps {
+                sh 'docker system prune -f'
+            }
+        }
+
+        // ─── Stage 9: Docker Build ─────────────────────────────────────────────
         stage('Docker Build') {
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."

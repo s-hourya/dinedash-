@@ -1,0 +1,5 @@
+node_modules
+.git
+trivy-fs.txt
+trivy-img.txt
+trivy-image.txt
